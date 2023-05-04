@@ -34,7 +34,7 @@ function Table() {
     const fetchUsers = async () => {
         try {
             setLoading(true)
-            const response = await axios.get('http://localhost:8080/getAlluser');
+            const response = await axios.get('https://backend-8pcl.onrender.com/getAlluser');
             setLoading(false)
             console.log("res", response)
             setUsers(response.data);
@@ -46,7 +46,7 @@ function Table() {
     const handleAddUser = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:8080/adduser', newUser);
+            const response = await axios.post('https://backend-8pcl.onrender.com/adduser', newUser);
             await fetchUsers()
             toast({
                 title: `User Added Successfully `,
@@ -63,7 +63,7 @@ function Table() {
     const handelUpdate = async () => {
         console.log("Edit USer", editUser)
         try {
-            const response = await axios.patch(`http://localhost:8080/updateuser/${editUser._id}`, editUser);
+            const response = await axios.patch(`https://backend-8pcl.onrender.com/updateuser/${editUser._id}`, editUser);
             const updatedUsers = users.map((user) => (user.id === response.data.id ? response.data : user));
             setUsers(updatedUsers);
 
@@ -83,7 +83,7 @@ function Table() {
     const handleDeleteUser = async (id) => {
         console.log(id)
         try {
-            await axios.delete(`http://localhost:8080/deleteuser/${id}`);
+            await axios.delete(`https://backend-8pcl.onrender.com/deleteuser/${id}`);
             // const updatedUsers = users.filter((item) => item.id !== id);
             await fetchUsers()
             toast({
